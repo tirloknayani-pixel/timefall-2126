@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>TIMEFALL: 2126 — Running Game</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="lobby" class="screen">
+    <div class="hero">
+      <div class="eyebrow">YEAR 2126 // TEMPORAL INCIDENT</div>
+      <h1>TIMEFALL<span>: 2126</span></h1>
+      <p>You came from 2026. The machines came first.</p>
+      <div class="panel lobby-panel">
+        <input id="name" maxlength="14" placeholder="Your callsign (e.g. NOVA-7)">
+        <div class="row">
+          <button id="create">CREATE ROOM</button>
+          <input id="roomCode" maxlength="4" placeholder="ROOM">
+          <button id="join" class="ghost">JOIN</button>
+        </div>
+        <small>2–6 players • real-time movement • fictional game data</small>
+      </div>
+    </div>
+  </div>
+
+  <div id="game" class="hidden">
+    <header>
+      <div><b>TIMEFALL: 2126</b><span id="status"> OFFLINE</span></div>
+      <div class="room">ROOM <strong id="code">----</strong></div>
+    </header>
+
+    <section class="hud">
+      <div><label>ENERGY</label><b id="energy">80</b></div>
+      <div><label>FOOD</label><b id="food">60</b></div>
+      <div><label>STABILITY</label><b id="stability">75</b></div>
+      <div><label>ROBOT ALERT</label><b id="alert">10</b></div>
+      <div><label>ROUND</label><b><span id="round">1</span>/12</b></div>
+      <div><label>TIMER</label><b id="timer">45</b></div>
+    </section>
+
+    <main>
+      <section class="world panel">
+        <canvas id="world"></canvas>
+        <div class="tip">WASD / ARROWS = RUN • MOBILE = HOLD THE DIRECTION PAD</div>
+        <div id="joystick" class="joystick">
+          <button data-dx="-1" data-dy="-1">↖</button>
+          <button data-dx="0" data-dy="-1">▲</button>
+          <button data-dx="1" data-dy="-1">↗</button>
+          <button data-dx="-1" data-dy="0">◀</button>
+          <button data-dx="0" data-dy="0">●</button>
+          <button data-dx="1" data-dy="0">▶</button>
+          <button data-dx="-1" data-dy="1">↙</button>
+          <button data-dx="0" data-dy="1">▼</button>
+          <button data-dx="1" data-dy="1">↘</button>
+        </div>
+      </section>
+
+      <aside>
+        <section class="panel">
+          <h3>PORTAL COMPONENTS</h3>
+          <div id="parts" class="parts"></div>
+          <p class="muted">Collect components by running near marked locations.</p>
+        </section>
+        <section class="panel">
+          <h3>CREW</h3>
+          <div id="crew"></div>
+        </section>
+        <section class="panel">
+          <h3>ACTION</h3>
+          <div class="actions">
+            <button data-action="explore">EXPLORE</button>
+            <button data-action="scavenge">SCAVENGE</button>
+            <button data-action="scan">SCAN</button>
+            <button data-action="repair">REPAIR</button>
+            <button data-action="rest">REST</button>
+            <button data-action="rescue">RESCUE</button>
+          </div>
+        </section>
+        <section class="panel">
+          <h3>EVENT LOG</h3>
+          <div id="log"></div>
+        </section>
+        <section class="panel chat">
+          <div id="chatLog"></div>
+          <div class="row"><input id="chatInput" maxlength="120" placeholder="Crew message"><button id="send">SEND</button></div>
+        </section>
+        <button id="start" class="start">START MISSION</button>
+      </aside>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
